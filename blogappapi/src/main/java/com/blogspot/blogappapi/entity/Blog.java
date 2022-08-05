@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,12 +22,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Blog {
 	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String title;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	private Author author;
 	
 	@CreationTimestamp

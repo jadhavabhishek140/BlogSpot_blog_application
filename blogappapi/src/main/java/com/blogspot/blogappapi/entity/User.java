@@ -3,6 +3,7 @@ package com.blogspot.blogappapi.entity;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class User {
 	
 	private String email;
 
+	@ElementCollection(targetClass = Usertype.class)
 	private Set<Usertype> usertype;
 	
 	@OneToOne(optional = true, cascade = CascadeType.ALL)
